@@ -27,7 +27,6 @@ function AppProvider({ children }) {
   const closeSubmenu = () => {
     toggleSubmenuOpen(false);
   };
-
   return (
     <AppContext.Provider
       value={{

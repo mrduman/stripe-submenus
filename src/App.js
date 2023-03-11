@@ -5,12 +5,12 @@ import Submenu from "./Submenu";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Navbar />
       <Sidebar />
       <Hero />
       <Submenu />
-    </div>
+    </>
   );
 }
 

@@ -5,7 +5,7 @@ import { AppContext } from "./context";
 
 function Navbar() {
   const data = useContext(AppContext);
-  const { openSidebar, openSubmenu } = data;
+  const { openSidebar, openSubmenu, closeSubmenu } = data;
 
   const displaySubmenu = (e) => {
     const page = e.target.textContent;
@@ -15,8 +15,15 @@ function Navbar() {
 
     openSubmenu(page, { center, bottom });
   };
+
+  const handleSubmenu = (e) => {
+    if (!e.target.classList.contains("link-btn")) {
+      closeSubmenu();
+    }
+  };
+
   return (
-    <nav className="nav">
+    <nav className="nav" onMouseOver={handleSubmenu}>
       <div className="nav-center">
         <div className="nav-header">
           <img src={logo} className="nav-logo" alt="" />
@@ -31,11 +38,7 @@ function Navbar() {
             </button>
           </li>
           <li>
-            <button
-              className="link-btn"
-              onMouseOver={displaySubmenu}
-              style={{ background: "black" }}
-            >
+            <button className="link-btn" onMouseOver={displaySubmenu}>
               developers
             </button>
           </li>

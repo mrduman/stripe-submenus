@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "./context";
 
 const Submenu = () => {
@@ -8,14 +8,23 @@ const Submenu = () => {
     page: { page, links },
     location,
   } = data;
+
   const container = useRef(null);
+  const [columns, setColumns] = useState("");
 
   useEffect(() => {
     const submenu = container.current;
     const { center, bottom } = location;
     submenu.style.left = `${center}px`;
     submenu.style.top = `${bottom}px`;
-  }, [location]);
+
+    if (links.length === 3) {
+      setColumns("col-3");
+    }
+    if (links.length > 3) {
+      setColumns("col-4");
+    }
+  }, [location, page, links]);
 
   return (
     <aside
@@ -24,11 +33,11 @@ const Submenu = () => {
     >
       <section>
         <h4>{page}</h4>
-        <div className={`submenu-center `}>
+        <div className={`submenu-center ${columns}`}>
           {links.map((link, index) => {
-            const { url, icon, label } = link;
+            const { label, icon, url } = link;
             return (
-              <a key={index} href={url}>
+              <a href={url} key={index}>
                 {icon}
                 {label}
               </a>

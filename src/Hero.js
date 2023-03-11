@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import hero from "./images/hero.svg";
 import phone from "./images/phone.svg";
+import { AppContext } from "./context";
 
 function Hero() {
+  const data = useContext(AppContext);
+  const { closeSubmenu } = data;
   return (
-    <div className="hero">
+    <div className="hero" onMouseOver={closeSubmenu}>
       <div className="hero-center">
         <div className="hero-info">
           <h1>
